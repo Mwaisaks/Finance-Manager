@@ -26,5 +26,35 @@ public class Account {
         }
     }
 
-    public 
+    public void setSavingsGoal(double goal){
+        this.savingsGoal = goal;
+    }
+
+    public void printSummary(){
+        double totalIncome = 0, totalExpenses = 0;
+        for (Transaction t : transactions){
+            if (t.getType().equalsIgnoreCase("income")){
+                totalIncome += t.getAmount();
+            }
+            else {
+                totalExpenses += t.getAmount();
+            }
+        }
+        System.out.println("\n=== Account Summary === ");
+        System.out.println("Total Income: $" + totalIncome);
+        System.out.println("Total Expenses: $" + totalExpenses);
+        System.out.println("Remaining Balance: $" + savingsGoal);
+        System.out.println("Progress Towards Goal: $" + (balance >= savingsGoal ? "Goal reached!" : balance));
+
+    }
+    public void printTransactions(){
+        if (transactions.isEmpty()){
+            System.out.println("No transactions recorded.");
+        }
+        else {
+            for (int i = 0; i < transactions.size(); i++){
+                System.out.println(i + ": " + transactions.get(i));
+            }
+        }
+    }
 }
